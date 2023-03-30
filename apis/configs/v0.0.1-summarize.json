@@ -1,0 +1,8 @@
+{
+    "deploy_port": 9002,
+    "summarize" : {
+        "model_name" : "sonacer/t5-base-ko-summarization",
+        "revision" : "main",
+        "device": "mps:0"
+    }
+}
