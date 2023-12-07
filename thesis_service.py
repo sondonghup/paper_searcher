@@ -9,6 +9,7 @@ translate_check = False
 
 st.title('[Paper Searcher]')
 
+search_text = ''
 search_text = st.text_input('')
 
 st.sidebar.header('Hello this is Paper Searcher')
@@ -42,48 +43,47 @@ st.session_state['bookmark'] = []
 @st.cache_data
 def book_mark_cache(data):
     return st.session_state['bookmark'].append(data)
-try:
-    with col1:
-        count = 0
-        for title, url, abstract, date, author in zip(titles, urls, abstracts, dates, authors):
+with col1:
+    count = 0
+    for title, url, abstract, date, author in zip(titles, urls, abstracts, dates, authors):
 
-            tab1, tab2 = st.tabs(['abs', 'trans'])
+        tab1, tab2 = st.tabs(['abs', 'trans'])
 
-            with tab1:
-                st.header(f'{title}\n')
-                abstracted, _ = lang.preprocess(abstract)
-                
-                st.info(abstracted)
-                st.info(date)
-                st.info(', '.join(author))
+        with tab1:
+            st.header(f'{title}\n')
+            abstracted, _ = lang.preprocess(abstract)
+            
+            st.info(abstracted)
+            st.info(date)
+            st.info(', '.join(author))
 
-                b1, b2, b3 = st.columns([1, 1, 1])
-                # translate_check = b1.button('translate', key = str(count))
-                bookmark_check = b2.button('bookmark', key = str(count)+'|'+str(count))
-                download_check = b3.button('download', key = str(count)+'|'+str(count)+'|'+str(count))
+            b1, b2, b3 = st.columns([1, 1, 1])
+            # translate_check = b1.button('translate', key = str(count))
+            bookmark_check = b2.button('bookmark', key = str(count)+'|'+str(count))
+            download_check = b3.button('download', key = str(count)+'|'+str(count)+'|'+str(count))
 
-                st.markdown('---')
+            st.markdown('---')
 
-            with tab2:
-                st.header(f'{title}\n')
-                with st.spinner('wait'):
-                    translated_title = title
-                    transalted_abstracted = lang.translate_func(abstracted)
-                st.success(transalted_abstracted)
+        with tab2:
+            st.header(f'{title}\n')
+            with st.spinner('wait'):
+                translated_title = title
+                transalted_abstracted = lang.translate_func(abstracted)
+            st.success(transalted_abstracted)
 
-                if bookmark_check:
-                    st.session_state['bookmark'] = book_mark_cache(count)
-                    print(st.session_state['bookmark'])
+            if bookmark_check:
+                st.session_state['bookmark'] = book_mark_cache(count)
+                print(st.session_state['bookmark'])
 
-                st.markdown('---')
-            count += 1
+            st.markdown('---')
+        count += 1
 
-    with col2:
-        print('here')
-        st.header('Book Mark')
-        # if lang.translate_func:
-        #     print('here')
-        #     st.header(translated_title)
-        #     st.error(transalted_abstracted)
-except Exception as e:
-    print(e)
+# with col2:
+#     print('here')
+#     st.header('Book Mark')
+#     # if lang.translate_func:
+#     #     print('here')
+#     #     st.header(translated_title)
+#     #     st.error(transalted_abstracted)
+# except Exception as e:
+# print(e)
