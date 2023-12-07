@@ -1,7 +1,7 @@
 {
     "deploy_port": 9001,
     "translate" : {
-        "model_name" : "circulus/kobart-trans-en-ko-v2",
+        "model_name" : "Helsinki-NLP/opus-mt-tc-big-en-ko",
         "revision" : "main",
         "device": "mps:0"
     }
