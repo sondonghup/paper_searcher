@@ -9,9 +9,6 @@ translate_check = False
 
 st.title('[Paper Searcher]')
 
-search_text = ''
-search_text = st.text_input('')
-
 st.sidebar.header('Hello this is Paper Searcher')
 st.sidebar.write('crawl with arxiv')
 st.sidebar.write('-----------------')
@@ -32,6 +29,11 @@ sort_type = st.sidebar.selectbox(
 st.sidebar.write('\n\n\n\n made by acer')
 
 lang = chatgpt_func(open_ai_key)
+
+search_text = st.text_input('')
+
+if not search_text :
+    st.write('please input')
 
 if search_text != '':
     titles, urls, abstracts, dates, authors = crawl(search_text, search_size, sort_type)
