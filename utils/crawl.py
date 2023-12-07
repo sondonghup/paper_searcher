@@ -8,6 +8,7 @@ def crawl(search_text, search_size, sort_type):
     abstracts = []
     authors = []
     dates = []
+    file_urls = []
 
     if sort_type == 'announcement date' :
         sort_type = '-announced_date_first'
@@ -22,6 +23,11 @@ def crawl(search_text, search_size, sort_type):
     # print(thesis_tables)
     thesis_table = thesis_tables.find_all('li', {'class' : 'arxiv-result'})
     for line in thesis_table:
+
+        file_url = line.find('p', {'class' : 'list-title is-inline-block'})
+        file_url = file_url.find('span').find_all('a')
+        file_urls.append(file_url[0]['href'])
+
         author = line.find('p', {'class' : 'authors'}).text.replace('\n', '').split(',')
         author = [x.strip() for x in author][:3]
         authors.append(author)
@@ -39,7 +45,7 @@ def crawl(search_text, search_size, sort_type):
         # abstract = preprocess(abstract)
         abstracts.append(abstract)
 
-    return titles, urls, abstracts, dates, authors
+    return titles, urls, abstracts, dates, authors, file_urls
 
 def preprocess(abstract):
     return re.sub("[^A-Za-z0-9가-힣]",' ',abstract)
