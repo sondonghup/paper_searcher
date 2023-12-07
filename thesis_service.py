@@ -85,5 +85,5 @@ try:
         #     print('here')
         #     st.header(translated_title)
         #     st.error(transalted_abstracted)
-except:
-    pass
+except Exception as e:
+    print(e)
