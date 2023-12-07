@@ -36,47 +36,47 @@ lang = chatgpt_func(open_ai_key)
 if search_text != '':
     titles, urls, abstracts, dates, authors = crawl(search_text, search_size, sort_type)
 
-col1, col2 = st.columns(2)
+# col1, col2 = st.columns(2)
 
 st.session_state['bookmark'] = []
 
 @st.cache_data
 def book_mark_cache(data):
     return st.session_state['bookmark'].append(data)
-with col1:
-    count = 0
-    for title, url, abstract, date, author in zip(titles, urls, abstracts, dates, authors):
 
-        tab1, tab2 = st.tabs(['abs', 'trans'])
+count = 0
+for title, url, abstract, date, author in zip(titles, urls, abstracts, dates, authors):
 
-        with tab1:
-            st.header(f'{title}\n')
-            abstracted, _ = lang.preprocess(abstract)
-            
-            st.info(abstracted)
-            st.info(date)
-            st.info(', '.join(author))
+    tab1, tab2 = st.tabs(['abs', 'trans'])
 
-            b1, b2, b3 = st.columns([1, 1, 1])
-            # translate_check = b1.button('translate', key = str(count))
-            bookmark_check = b2.button('bookmark', key = str(count)+'|'+str(count))
-            download_check = b3.button('download', key = str(count)+'|'+str(count)+'|'+str(count))
+    with tab1:
+        st.header(f'{title}\n')
+        abstracted, _ = lang.preprocess(abstract)
+        
+        st.info(abstracted)
+        st.info(date)
+        st.info(', '.join(author))
 
-            st.markdown('---')
+        b1, b2, b3 = st.columns([1, 1, 1])
+        # translate_check = b1.button('translate', key = str(count))
+        bookmark_check = b2.button('bookmark', key = str(count)+'|'+str(count))
+        download_check = b3.button('download', key = str(count)+'|'+str(count)+'|'+str(count))
 
-        with tab2:
-            st.header(f'{title}\n')
-            with st.spinner('wait'):
-                translated_title = title
-                transalted_abstracted = lang.translate_func(abstracted)
-            st.success(transalted_abstracted)
+        st.markdown('---')
 
-            if bookmark_check:
-                st.session_state['bookmark'] = book_mark_cache(count)
-                print(st.session_state['bookmark'])
+    with tab2:
+        st.header(f'{title}\n')
+        with st.spinner('wait'):
+            translated_title = title
+            transalted_abstracted = lang.translate_func(abstracted)
+        st.success(transalted_abstracted)
 
-            st.markdown('---')
-        count += 1
+        if bookmark_check:
+            st.session_state['bookmark'] = book_mark_cache(count)
+            print(st.session_state['bookmark'])
+
+        st.markdown('---')
+    count += 1
 
 # with col2:
 #     print('here')
