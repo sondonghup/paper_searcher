@@ -10,8 +10,10 @@ def crawl(search_text, search_size, sort_type):
     dates = []
     file_urls = []
 
-    if sort_type == 'announcement date' :
+    if sort_type == 'newest' :
         sort_type = '-announced_date_first'
+    elif sort_type == 'oldest' :
+        sort_type = 'announced_date_first'
     elif sort_type == 'relevance':
         sort_type = ''
 
