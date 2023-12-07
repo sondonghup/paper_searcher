@@ -32,10 +32,7 @@ lang = chatgpt_func(open_ai_key)
 
 search_text = st.text_input('')
 
-if not search_text :
-    st.write('please input')
-
-if search_text:
+if search_text != '':
 
     titles, urls, abstracts, dates, authors = crawl(search_text, search_size, sort_type)
 
