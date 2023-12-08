@@ -4,7 +4,7 @@ from apis.func import chatgpt_func
 
 st.set_page_config(layout="wide")
 
-st.image('./paper_researcher_logo.png')
+st.image('./paper_searcher_logo.png')
 
 if 'bookmarks' not in st.session_state:
     st.session_state['bookmarks'] = []
@@ -34,7 +34,7 @@ if 'bookmarkcheck' not in st.session_state:
     st.session_state['bookmarkcheck'] = []
 
 ### side bar function ###
-st.sidebar.image('./paper_researcher_logo_mini.png')
+st.sidebar.image('./paper_searcher_logo_mini.png')
 st.sidebar.title(' :wave: Hello this is Paper Searcher')
 
 tab1, tab2 = st.sidebar.tabs(['Settings', 'Book Mark'])
