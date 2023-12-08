@@ -2,11 +2,14 @@
 
 #### Paper Searcher is a streamlit app that helps you easily find papers and obtain important information quickly.
 
+<br><br>
 
-## <center>Paper Searcher</center>
+# <center>Paper Searcher</center>
 
 I would like to give you a lot of help in reading the paper.
 The purpose is to summarize the abstract once more to quickly obtain the necessary information.
+
+<br><br>
 
 <img width="1279" alt="paper_searcher_screenshot" src="https://github.com/sondonghup/thesis_searcher/assets/42092560/5bdecf0f-13ca-49ba-97c0-c4c8c5b2244b">
 
@@ -28,8 +31,10 @@ The purpose is to summarize the abstract once more to quickly obtain the necessa
 
 ![search_func](https://github.com/sondonghup/thesis_searcher/assets/42092560/b31ae8e6-4548-4dc4-af09-0625b17738ef)
 
+§§§
 set search size ex) 25, 50, 100, 200
 set sort type ex) newest, oldest, relevance
+§§§
 
 > Translate
 
