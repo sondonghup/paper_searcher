@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 import re
 
-def crawl(search_text, search_size, sort_type):
+def crawl(search_text, search_size, sort_type, from_date, to_date, search_term):
     titles = []
     urls = []
     abstracts = []
@@ -17,7 +17,7 @@ def crawl(search_text, search_size, sort_type):
     elif sort_type == 'relevance':
         sort_type = ''
 
-    url = f'https://arxiv.org/search/cs?query={search_text}&searchtype=all&abstracts=show&order={sort_type}&size={search_size}'
+    url = f'https://arxiv.org/search/advanced?advanced=&terms-0-operator=AND&terms-0-term={search_text}&terms-0-field={search_term}&classification-physics_archives=all&classification-include_cross_list=include&date-filter_by=date_range&date-from_date={from_date}&date-to_date={to_date}&date-date_type=submitted_date&abstracts=show&size={search_size}&order={sort_type}'
 
     response = requests.get(url)
     html = bs(response.text, 'html.parser')
@@ -25,6 +25,8 @@ def crawl(search_text, search_size, sort_type):
     # print(thesis_tables)
     thesis_table = thesis_tables.find_all('li', {'class' : 'arxiv-result'})
     for line in thesis_table:
+
+        # print(line)
 
         file_url = line.find('p', {'class' : 'list-title is-inline-block'})
         file_url = file_url.find('span').find_all('a')
