@@ -17,7 +17,7 @@ The purpose is to summarize the abstract once more to quickly obtain the necessa
 
 # Getting Started
 
-|[Run in Streamlit](https://thesissearcher-jbudguwgejvmz4vv4twrds.streamlit.app/)|
+|[Run in Streamlit](https://papersearcher-sqxp25ev6vebhrqxdxf8bq.streamlit.app/)|
 |---|
 |<img width="726" alt="paper_researcher_logo" src="https://github.com/sondonghup/thesis_searcher/assets/42092560/341d06ef-7047-4cff-8cdb-fd21bc8563b5">|
 
