@@ -1,6 +1,7 @@
 import streamlit as st
 from utils.crawl import crawl
 from apis.func import chatgpt_func
+import datetime
 
 st.set_page_config(layout="wide")
 
@@ -74,12 +75,14 @@ with tab1:
 
     st.divider()
     from_date = st.date_input(
-        'from_date'
+        'from_date',
+        min_value=datetime.date(2000, 1, 1)
     )
 
     st.divider()
     to_date = st.date_input(
-        'to_date'
+        'to_date',
+        min_value=datetime.date(2000, 1, 1)
     )
     # st.write('Enter sort type')
     ##########################
