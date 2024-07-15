@@ -184,5 +184,5 @@ with tab2:
         st.session_state['bookmarknum'] += 1
         for (title, file) in st.session_state['bookmarks'][-1 * st.session_state['bookmarknum'] : ]:
             st.divider()
-            st.write(title)
+            st.error(title)
             st.link_button('Download', file_url)
