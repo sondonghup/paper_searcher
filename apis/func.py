@@ -14,7 +14,7 @@ class genai_func():
         self.abstract_template = """summarize input
         """
         
-        self.translate_template = """translate input to korean
+        self.translate_template = """input을 한국어로 번역하시오
         """
 
         self.model = genai.GenerativeModel('gemini-1.5-flash')
@@ -38,7 +38,9 @@ class genai_func():
 
         print('input : '+self.summarized_text)
 
-        response = self.model.generate_content(f"input : {self.summarized_text}")
+        response = self.model.generate_content(f"{self.translate_template} input : {self.summarized_text}")
+
+        print(response.text)
 
         return response.text
         

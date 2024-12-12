@@ -163,7 +163,7 @@ if search_text != '':
                     print('번역 숫자', st.session_state['translatedcheck'])
                     with st.spinner('wait'):
                         translated_title = title
-                        transalted_abstracted = lang.translate_func(abstracted)
+                        transalted_abstracted = lang.translate_func()
                     st.success(transalted_abstracted)
             except Exception as e:
                 print(e)
