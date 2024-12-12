@@ -76,13 +76,14 @@ with tab1:
     st.divider()
     from_date = st.date_input(
         'from_date',
-        min_value=datetime.date(2000, 1, 1)
+        value = datetime.date(2020, 1, 1),
+        min_value = datetime.date(2000, 1, 1)
     )
 
     st.divider()
     to_date = st.date_input(
         'to_date',
-        min_value=datetime.date(2000, 1, 1)
+        min_value = datetime.date(2000, 1, 1)
     )
     # st.write('Enter sort type')
     ##########################
