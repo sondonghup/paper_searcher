@@ -1,3 +1,4 @@
 bs4 == 0.0.1
 summa == 1.2.0
 openai == 0.28.1
+google-generativeai == 0.8.3

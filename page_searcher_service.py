@@ -1,6 +1,6 @@
 import streamlit as st
 from utils.crawl import crawl
-from apis.func import chatgpt_func
+from apis.func import genai_func
 import datetime
 
 st.set_page_config(layout="wide")
@@ -97,9 +97,11 @@ st.sidebar.write('The purpose is to summarize the abstract once more to quickly 
 st.sidebar.write('It also has additional features such as translation, bookmarking and downloading.')
 st.sidebar.write('\n\n\n\n made by acer')
 
-lang = chatgpt_func(open_ai_key)
+@st.cache_resource
+def get_func():
+    return genai_func(st.secrets["genai_key"])
 
-
+lang = get_func()
 
 search_text = st.text_input(':dark_sunglasses: What topic would you like to find a paper on?')
 
