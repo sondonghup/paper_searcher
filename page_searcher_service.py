@@ -48,11 +48,6 @@ with tab1:
     # st.sidebar.write('년도, 최신순, 연관성, 저자이름, 퍼블리쉬 된곳만 보기')
     # 하이라이트 해주기
 
-    st.divider()
-    open_ai_key = st.text_input(
-        ' :heavy_check_mark: **input your open ai key**',
-        type='password'
-    )
     # st.write('Please enter open AI key for quick translation')
     
     st.divider()
@@ -106,8 +101,9 @@ lang = get_func()
 search_text = st.text_input(':dark_sunglasses: What topic would you like to find a paper on?')
 
 if not search_text:
-    st.header(':arrow_down: GUIDE!! :arrow_down:')
-    st.video('./paper_searcher_guide.webm')
+    pass
+    # st.header(':arrow_down: GUIDE!! :arrow_down:')
+    # st.video('./paper_searcher_guide.webm')
 
 if len(st.session_state['search_text']) > 1 and search_text != st.session_state['search_text'][-1]:
     st.session_state['titles'] = []
@@ -145,36 +141,13 @@ if search_text != '':
             st.divider()
             st.success(abstracted)
 
-            translate_check = st.toggle('Translate', key = str(count) + '|'+ str(st.session_state['search_count']))
+            with st.spinner('translating...'):
+                transalted_abstracted = lang.translate_func()
+            st.success(transalted_abstracted)
+    
             bookmark_check = st.toggle('Bookmark', key = str(count)+'|'+str(count)+ '|' + str(st.session_state['search_count']))
 
             st.link_button('Download', file_url)
-            st.markdown('---')
-
-        with tab4:
-            st.header(f'{title}\n')
-            st.markdown(f'<div style="text-align: right">{date}</div>', unsafe_allow_html=True)
-            st.markdown(f'<div style="text-align: right">{author}</div>', unsafe_allow_html=True)
-            st.divider()
-
-            try:
-                if translate_check and count not in st.session_state['translatedcheck']:
-                    st.session_state['translatedcheck'].append(count)
-                    print('번역 숫자', st.session_state['translatedcheck'])
-                    with st.spinner('wait'):
-                        translated_title = title
-                        transalted_abstracted = lang.translate_func()
-                    st.success(transalted_abstracted)
-            except Exception as e:
-                print(e)
-                pass
-
-            st.link_button('Download', file_url)
-
-            if bookmark_check and count not in st.session_state['bookmarkcheck']:
-                st.session_state['bookmarkcheck'].append(count)
-                st.session_state['bookmarks'].append([title, file_url])
-
             st.markdown('---')
 
         count += 1

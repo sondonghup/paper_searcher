@@ -17,7 +17,7 @@ class genai_func():
         self.translate_template = """input을 한국어로 번역하시오
         """
 
-        self.model = genai.GenerativeModel('gemini-1.5-flash')
+        self.model = genai.GenerativeModel('chat-bard')
 
 
     def preprocess(self, text):
@@ -36,11 +36,7 @@ class genai_func():
         
     def translate_func(self):
 
-        print('input : '+self.summarized_text)
-
         response = self.model.generate_content(f"{self.translate_template} input : {self.summarized_text}")
-
-        print(response.text)
 
         return response.text
         
